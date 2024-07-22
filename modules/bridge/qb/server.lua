@@ -25,3 +25,9 @@ function stevo_lib.GetJobCount(source, job)
     return amount
 end
 
+function stevo_lib.GetPlayerGroups(source)
+    local player = stevo_lib.GetPlayer(source)
+    return player.PlayerData.job, player.PlayerData.gang
+end
+
+

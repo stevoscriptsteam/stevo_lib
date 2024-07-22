@@ -18,8 +18,10 @@ function stevo_lib.GetJobCount(source, job)
     return ESX.GetExtendedPlayers('job', job)
 end
 
-function stevo_lib.GetPlayerGroups(source, job)
-    return ESX.PlayerData.job.name, false
+function stevo_lib.GetPlayerGroups(source)
+    local player = stevo_lib.GetPlayer(source)
+    local job = player.getJob()
+    return job.name, false
 end
 
 
