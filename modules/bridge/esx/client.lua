@@ -8,7 +8,7 @@ end
 
 function stevo_lib.GetPlayerGroups()
     local PlayerData = ESX.GetPlayerData()
-    return PlayerData.job.name, PlayerData.job2.name
+    return PlayerData.job.name, false
 end
 		
 RegisterNetEvent('esx:playerLoaded', function()
