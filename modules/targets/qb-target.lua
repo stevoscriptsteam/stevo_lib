@@ -45,26 +45,36 @@ end
 
 
 
-local function resourceStopped(resource)
-    for _, target in pairs(stevo_lib.target.active) do
-        if target.invokingResource == resource then 
-            local optionNames = {}
-            for _, option in ipairs(target.options.options) do
-                optionNames[#optionNames + 1] = option.label
-            end
-            if target.type == 'zone' then
-                exports["qb-target"]:RemoveZone(target.id)
-                stevo_lib.target.active[_] = {}
-            elseif target.type == 'entity' then
-                exports['qb-target']:RemoveTargetEntity(target.entity)
-                stevo_lib.target.active[_] = {}
-            elseif target.type == 'globalPed' then
-                exports['qb-target']:RemoveGlobalType(1, optionNames)
-                stevo_lib.target.active[_] = {}
+if stevo_lib.target == 'qb' then 
+
+
+    local function resourceStopped(resource)
+        for _, target in pairs(stevo_lib.target.active) do
+            if target.invokingResource == resource then 
+                local optionNames = {}
+                for _, option in ipairs(target.options.options) do
+                    optionNames[#optionNames + 1] = option.label
+                end
+                if target.type == 'zone' then
+                    exports["qb-target"]:RemoveZone(target.id)
+                    stevo_lib.target.active[_] = {}
+                elseif target.type == 'entity' then
+                    if DoesEntityExist(target.entity) then 
+                        exports['qb-target']:RemoveTargetEntity(target.entity)
+                    end
+                    stevo_lib.target.active[_] = {}
+                elseif target.type == 'globalPed' then
+                    exports['qb-target']:RemoveGlobalType(1, optionNames)
+                    stevo_lib.target.active[_] = {}
+                elseif target.type == 'globalObject' then
+                    exports['qb-target']:RemoveGlobalType(3, optionNames)
+                    stevo_lib.target.active[_] = {}
+                end
             end
         end
     end
+
+
+    AddEventHandler('onResourceStop', function(resource) resourceStopped(resource) end)
 end
 
-
-AddEventHandler('onResourceStop', function(resource) resourceStopped(resource) end)

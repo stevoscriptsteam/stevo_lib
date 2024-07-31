@@ -5,7 +5,7 @@ lua54 'yes'
 
 author "Stevo Scripts | steve"
 description 'A library of functions & a bridge for Stevo Scripts resources.'
-version '1.0.1'
+version '1.1.0'
 
 shared_script {
     '@ox_lib/init.lua',
@@ -30,6 +30,5 @@ files {
 
 dependencies {
     'ox_lib',
-    'ox_inventory',
     'oxmysql'
 }

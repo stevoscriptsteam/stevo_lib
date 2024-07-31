@@ -25,3 +25,19 @@ function stevo_lib.GetPlayerGroups(source)
 end
 
 
+function stevo_lib.HasItem(source, _item)
+    local player = stevo_lib.GetPlayer(source)
+    local item = player.getInventoryItem(_item)
+    return item?.amount or item?.count or 0
+end
+
+function stevo_lib.RemoveItem(source, item, count)
+    local player = stevo_lib.GetPlayer(source)
+    return player.removeInventoryItem(item, count)
+end
+
+function stevo_lib.AddItem(source, item, count)
+    local player = stevo_lib.GetPlayer(source)
+    return player.addInventoryItem(item, count)
+end
+

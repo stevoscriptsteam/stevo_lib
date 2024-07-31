@@ -75,7 +75,9 @@ local function resourceStopped(resource)
                 exports.ox_target:removeZone(target.id)
                 stevo_lib.target.active[_] = {}
             elseif target.type == 'entity' then
-                exports.ox_target:removeLocalEntity(target.entity)
+                if DoesEntityExist(target.entity) then 
+                    exports.ox_target:removeLocalEntity(target.entity)
+                end
                 stevo_lib.target.active[_] = {}
             elseif target.type == 'globalPed' then
                 exports.ox_target:removeGlobalPed(optionNames)
