@@ -41,3 +41,6 @@ function stevo_lib.AddItem(source, item, count)
     return player.addInventoryItem(item, count)
 end
 
+function stevo_lib.RegisterUsableItem(item, cb)
+    ESX.RegisterUsableItem(item, cb)
+end

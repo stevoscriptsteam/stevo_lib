@@ -46,6 +46,11 @@ function stevo_lib.AddItem(source, item, count)
     return player.Functions.AddItem(item, count)
 end
 
+function stevo_lib.RegisterUsableItem(item, cb)
+    QBCore.Functions.CreateUseableItem(item, cb)
+end
+
+
 
 
 
