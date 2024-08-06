@@ -4,8 +4,8 @@ use_experimental_fxv2_oal 'yes'
 lua54 'yes'
 
 author "Stevo Scripts | steve"
-description 'A library of functions & a bridge for Stevo Scripts resources.'
-version '1.1.0'
+description 'A library of functions & bridge for Stevo Scripts resources.'
+version '1.1.5'
 
 shared_script {
     '@ox_lib/init.lua',
