@@ -1,4 +1,4 @@
-## stevo_lib - 1.1.1
+## stevo_lib - 1.1.2
 A library of functions & a bridge for Stevo Scripts resources.
 
 Documentation: https://docs.stevoscripts.com/free-scripts/stevo_lib
