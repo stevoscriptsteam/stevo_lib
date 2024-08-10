@@ -10,6 +10,12 @@ function stevo_lib.GetPlayerGroups()
     return Player.job.name, Player.gang.name
 end
 
+function stevo_lib.IsDead()
+    playerData = QBCore.Functions.GetPlayerData()
+    return playerData.metadata.isdead
+end
+
+
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     TriggerEvent('stevo_lib:playerLoaded')
 end)
