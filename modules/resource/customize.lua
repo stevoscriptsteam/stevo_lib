@@ -31,14 +31,4 @@ function stevo_lib.Notify(msg, type, duration)
 	end
 end
 
-function stevo_lib.playAnim(ped, clip, anim, time)
 
-	lib.requestAnimDict(clip)
- 	TaskPlayAnim(ped, clip, anim, 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
- 	RemoveAnimDict(clip)
-	if time then 
-		Wait(time)
-		ClearPedTasks(ped)
-	end
-
-end
