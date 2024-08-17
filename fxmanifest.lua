@@ -14,7 +14,8 @@ shared_script {
 
 client_scripts {
     'modules/init/client.lua',
-    'modules/resource/customize.lua'
+    'modules/resource/customize.lua',
+    'modules/resource/functions.lua'
 }
 
 server_scripts {
