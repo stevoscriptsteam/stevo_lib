@@ -6,6 +6,7 @@ end
 
 function stevo_lib.GetIdentifier(source)
     local player = stevo_lib.GetPlayer(source)
+
     return player.PlayerData.citizenid
 end
 
