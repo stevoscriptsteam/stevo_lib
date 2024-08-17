@@ -80,3 +80,21 @@ function stevo_lib.createPed(modelHash, x, y, z, heading, isNetwork, scriptHostP
 
 	return ped
 end
+
+---@param label string
+---@param pos vector3
+---@param sprite number
+---@param color number
+---@param scale integer
+function stevo_lib.createBlip(label,pos,sprite,color,scale)
+	local blip =  AddBlipForCoord(pos.x, pos.y, pos.z)
+	SetBlipSprite (blip, sprite)
+    SetBlipDisplay(blip, 4)
+    SetBlipScale  (blip, scale)
+    SetBlipAsShortRange(blip, true)
+    SetBlipColour(blip, color)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentSubstringPlayerName(label)
+    EndTextCommandSetBlipName(blip)
+    return blip
+end
