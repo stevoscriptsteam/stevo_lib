@@ -1,5 +1,4 @@
 local ESX = exports.es_extended:getSharedObject()
-local Config = lib.require('config')
 local isDead
 
 
