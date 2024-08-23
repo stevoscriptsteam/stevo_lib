@@ -4,4 +4,7 @@ return {
 
     TextUIType = 'ox_lib', -- Support for 'ox_lib' 'gtabasic' 'okok' and 'custom' (custom requires editing)
 
+
+    skillsCommand = true,
+    skillsKeybind = true
 }

@@ -5,7 +5,7 @@ lua54 'yes'
 
 author "Stevo Scripts | steve"
 description 'A library of functions & a bridge for Stevo Scripts resources.'
-version '1.1.2'
+version '1.5.0'
 
 shared_script {
     '@ox_lib/init.lua',
@@ -13,20 +13,23 @@ shared_script {
 }
 
 client_scripts {
-    'modules/init/client.lua',
-    'modules/resource/customize.lua',
-    'modules/resource/functions.lua'
+    'init/client.lua',
+    'modules/functions/*.lua',
+    'modules/skills/client.lua',
 }
 
 server_scripts {
-    'modules/init/server.lua',
+    'init/server.lua',
+    'modules/skills/server.lua',
     '@oxmysql/lib/MySQL.lua'
 }
+
 
 
 files {
     'modules/bridge/**/*.lua',
     'modules/targets/*.lua',
+    'locales/*.json'
 }
 
 dependencies {
