@@ -1,5 +1,4 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local Config = lib.require('config')
 
 function stevo_lib.bridgeNotify(msg, type, duration)
 	QBCore.Functions.Notify(msg, 'primary', duration)
