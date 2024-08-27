@@ -16,11 +16,13 @@ client_scripts {
     'init/client.lua',
     'modules/functions/*.lua',
     'modules/skills/client.lua',
+    'modules/bossmenu/client.lua'
 }
 
 server_scripts {
     'init/server.lua',
     'modules/skills/server.lua',
+    'modules/bossmenu/server.lua',
     '@oxmysql/lib/MySQL.lua'
 }
 

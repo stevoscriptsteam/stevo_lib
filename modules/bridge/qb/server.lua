@@ -26,6 +26,20 @@ function stevo_lib.GetJobCount(source, job)
     return amount
 end
 
+function stevo_lib.GetPlayers()
+    local players = QBCore.Functions.GetQBPlayers()
+    local formattedPlayers = {}
+    for _, v in pairs(players) do
+        local player = {
+            job = v.PlayerData.job.name,
+            gang = v.PlayerData.gang.name,
+            source = v.PlayerData.source
+        }
+        table.insert(formattedPlayers, player)
+    end
+    return formattedPlayers
+end
+
 function stevo_lib.GetPlayerGroups(source)
     local player = stevo_lib.GetPlayer(source)
     return player.PlayerData.job, player.PlayerData.gang

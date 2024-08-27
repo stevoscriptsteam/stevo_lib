@@ -24,6 +24,19 @@ function stevo_lib.GetPlayerGroups(source)
     return job.name, false
 end
 
+function stevo_lib.GetPlayers()
+    local players = ESX.GetExtendedPlayers()
+    local formattedPlayers = {}
+    for _, v in pairs(players) do
+        local player = {
+            job = v.getJob().name,
+            gang = false,
+            source = v.source
+        }
+        table.insert(formattedPlayers, player)
+    end
+    return formattedPlayers
+end
 
 function stevo_lib.HasItem(source, _item)
     local player = stevo_lib.GetPlayer(source)
