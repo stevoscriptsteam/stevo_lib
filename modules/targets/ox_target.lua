@@ -31,6 +31,7 @@ function stevo_lib.target.AddTargetEntity(entity, parameters)
 end
 
 function stevo_lib.target.AddBoxZone(name, coords, size, parameters)
+    print('hello')
     local rotation = parameters.rotation
     local id = exports.ox_target:addBoxZone({
         coords = coords,

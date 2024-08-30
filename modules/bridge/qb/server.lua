@@ -51,6 +51,16 @@ function stevo_lib.HasItem(source, _item)
     return item?.count or item?.amount or 0
 end
 
+function stevo_lib.GetDob(source)
+    local player = stevo_lib.GetPlayer(source)
+    return player.PlayerData.charinfo.birthdate
+end
+
+function stevo_lib.GetSex(source)
+    local player = stevo_lib.GetPlayer(source)
+    return player.PlayerData.charinfo.gender
+end
+
 function stevo_lib.RemoveItem(source, item, count)
     local player = stevo_lib.GetPlayer(source)
     return player.Functions.RemoveItem(item, count)

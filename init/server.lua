@@ -13,6 +13,7 @@ local framework = ox == 'started' and 'ox' or qbox == 'started' and 'qb' or qb =
 
 if not framework then return error('Unable to find framework, This could be because you are using a modified framework name.') end
 
+stevo_lib.framework = framework
 
 local file_paths = {
     ('modules/bridge/%s/server.lua'):format(framework),
