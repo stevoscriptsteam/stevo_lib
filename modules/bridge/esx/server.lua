@@ -1,4 +1,5 @@
 local ESX = exports.es_extended:getSharedObject()
+local ox_inventory = GetResourceState('ox_inventory') == 'started' and true or false
 
 function stevo_lib.GetPlayer(source)
     return ESX.GetPlayerFromId(source)
@@ -38,12 +39,6 @@ function stevo_lib.GetPlayers()
     return formattedPlayers
 end
 
-function stevo_lib.HasItem(source, _item)
-    local player = stevo_lib.GetPlayer(source)
-    local item = player.getInventoryItem(_item)
-    return item?.amount or item?.count or 0
-end
-
 function stevo_lib.GetDob(source)
     local player = stevo_lib.GetPlayer(source)
     return player.variables.dateofbirth
@@ -64,6 +59,30 @@ function stevo_lib.AddItem(source, item, count)
     return player.addInventoryItem(item, count)
 end
 
+function stevo_lib.HasItem(source, _item)
+    local player = stevo_lib.GetPlayer(source)
+    local item = player.getInventoryItem(_item)
+    return item?.amount or item?.count or 0
+end
+
+function stevo_lib.GetInventory(source)
+    local player = stevo_lib.GetPlayer(source)
+    local items = {}
+    local data = ox_inventory and exports.ox_inventory:GetInventoryItems(source) or player.getInventory()
+    for i=1, #data do 
+        local item = data[i]
+        items[#items + 1] = {
+            name = item.name,
+            label = item.label,
+            count = ox_inventory and item.count or item.amount,
+            weight = item.weight,
+            metadata = ox_inventory and item.metadata or item.info
+        }
+    end
+    return items
+end
+
 function stevo_lib.RegisterUsableItem(item, cb)
     ESX.RegisterUsableItem(item, cb)
 end
+

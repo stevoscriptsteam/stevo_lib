@@ -1,4 +1,5 @@
 local QBCore = exports['qb-core']:GetCoreObject()
+local ox_inventory = GetResourceState('ox_inventory') == 'started' and true or false
 
 function stevo_lib.GetPlayer(source)
     return QBCore.Functions.GetPlayer(source)
@@ -45,12 +46,6 @@ function stevo_lib.GetPlayerGroups(source)
     return player.PlayerData.job, player.PlayerData.gang
 end
 
-function stevo_lib.HasItem(source, _item)
-    local player = stevo_lib.GetPlayer(source)
-    local item = player.Functions.GetItemByName(_item)
-    return item?.count or item?.amount or 0
-end
-
 function stevo_lib.GetDob(source)
     local player = stevo_lib.GetPlayer(source)
     return player.PlayerData.charinfo.birthdate
@@ -69,6 +64,33 @@ end
 function stevo_lib.AddItem(source, item, count)
     local player = stevo_lib.GetPlayer(source)
     return player.Functions.AddItem(item, count)
+end
+
+function stevo_lib.HasItem(source, _item)
+    local player = stevo_lib.GetPlayer(source)
+    local item = player.Functions.GetItemByName(_item)
+    return item?.count or item?.amount or 0
+end
+
+function stevo_lib.GetInventory(source)
+    local player = stevo_lib.GetPlayer(source)
+    local items = {}
+    local data = ox_inventory and exports.ox_inventory:GetInventoryItems(source) or player.PlayerData.items
+
+    for slot, item in pairs(data) do 
+
+        items[#items + 1] = {
+            name = item.name,
+            label = item.label,
+            count = ox_inventory and item.count or item.amount,
+            weight = item.weight,
+            metadata = ox_inventory and item.metadata or item.info
+        }
+
+    end
+
+
+    return items
 end
 
 function stevo_lib.RegisterUsableItem(item, cb)
