@@ -5,7 +5,7 @@ lua54 'yes'
 
 author "Stevo Scripts | steve"
 description 'A library of functions & a bridge for Stevo Scripts resources.'
-version '1.6.5'
+version '1.6.6'
 
 shared_script {
     '@ox_lib/init.lua',
