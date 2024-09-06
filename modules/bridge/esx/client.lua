@@ -14,6 +14,22 @@ function stevo_lib.IsDead()
     return isDead
 end
 
+function stevo_lib.GetSex()
+    return PlayerData.sex == 'Male' and 1 or 2
+end
+
+function stevo_lib.SetOutfit(outfit) 
+    if outfit then 
+        ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
+            TriggerEvent('skinchanger:loadClothes', skin, outfit)
+        end)
+    else 
+        ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
+            TriggerEvent('skinchanger:loadSkin', skin)
+        end)
+    end 
+end
+
 AddEventHandler('esx:onPlayerSpawn', function(noAnim)
     isDead = nil
 end)
