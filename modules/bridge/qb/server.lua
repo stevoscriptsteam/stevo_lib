@@ -46,6 +46,18 @@ function stevo_lib.GetPlayerGroups(source)
     return player.PlayerData.job, player.PlayerData.gang
 end
 
+function stevo_lib.GetPlayerJobInfo(source)
+    local player = stevo_lib.GetPlayer(source)
+    local job = player.getJob()
+    local jobInfo = {
+        name = job.name,
+        label = job.label,
+        grade = job.grade,
+        gradeLabel = job.grade_label,
+    }
+    return jobInfo
+end
+
 function stevo_lib.GetDob(source)
     local player = stevo_lib.GetPlayer(source)
     return player.PlayerData.charinfo.birthdate

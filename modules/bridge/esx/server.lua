@@ -25,6 +25,19 @@ function stevo_lib.GetPlayerGroups(source)
     return job.name, false
 end
 
+
+function stevo_lib.GetPlayerJobInfo(source)
+    local player = stevo_lib.GetPlayer(source)
+    local job = player.PlayerData.job
+    local jobInfo = {
+        name = job.name,
+        label = job.label,
+        grade = job.grade,
+        gradeName = job.grade.name,
+    }
+    return jobInfo
+end
+
 function stevo_lib.GetPlayers()
     local players = ESX.GetExtendedPlayers()
     local formattedPlayers = {}
