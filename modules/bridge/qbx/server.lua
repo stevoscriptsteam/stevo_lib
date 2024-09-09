@@ -1,4 +1,3 @@
-local ox_inventory = GetResourceState('ox_inventory') == 'started' and true or false
 
 function stevo_lib.GetPlayer(source)
     return exports.qbx_core:GetPlayer(source)
@@ -80,13 +79,11 @@ function stevo_lib.GetSex(source)
 end
 
 function stevo_lib.RemoveItem(source, item, count)
-    local player = stevo_lib.GetPlayer(source)
-    return player.Functions.RemoveItem(item, count)
+    return exports.ox_inventory:RemoveItem(source, item, count)
 end
 
 function stevo_lib.AddItem(source, item, count)
-    local player = stevo_lib.GetPlayer(source)
-    return player.Functions.AddItem(item, count)
+    return exports.ox_inventory:AddItem(source, item, count)
 end
 
 function stevo_lib.HasItem(source, _item)
@@ -96,18 +93,17 @@ function stevo_lib.HasItem(source, _item)
 end
 
 function stevo_lib.GetInventory(source)
-    local player = stevo_lib.GetPlayer(source)
     local items = {}
-    local data = ox_inventory and exports.ox_inventory:GetInventoryItems(source) or player.PlayerData.items
+    local data = exports.ox_inventory:GetInventoryItems(source)
 
     for slot, item in pairs(data) do 
 
         items[#items + 1] = {
             name = item.name,
             label = item.label,
-            count = ox_inventory and item.count or item.amount,
+            count = item.count,
             weight = item.weight,
-            metadata = ox_inventory and item.metadata or item.info
+            metadata = item.metadata
         }
 
     end
