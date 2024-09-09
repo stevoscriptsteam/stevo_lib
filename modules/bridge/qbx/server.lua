@@ -1,8 +1,7 @@
-local QBCore = exports['qb-core']:GetCoreObject()
 local ox_inventory = GetResourceState('ox_inventory') == 'started' and true or false
 
 function stevo_lib.GetPlayer(source)
-    return QBCore.Functions.GetPlayer(source)
+    return exports.qbx_core:GetPlayer(source)
 end
 
 function stevo_lib.GetIdentifier(source)
@@ -18,7 +17,7 @@ end
 
 function stevo_lib.GetJobCount(source, job)
     local amount = 0
-    local players = QBCore.Functions.GetQBPlayers()
+    local players = exports.qbx_core:GetQBPlayers()
     for _, v in pairs(players) do
         if v and v.PlayerData.job.name == job then
             amount = amount + 1
@@ -28,7 +27,7 @@ function stevo_lib.GetJobCount(source, job)
 end
 
 function stevo_lib.GetPlayers()
-    local players = QBCore.Functions.GetQBPlayers()
+    local players = exports.qbx_core:GetQBPlayers()
     local formattedPlayers = {}
     for _, v in pairs(players) do
         local player = {
@@ -118,7 +117,7 @@ function stevo_lib.GetInventory(source)
 end
 
 function stevo_lib.RegisterUsableItem(item, cb)
-    QBCore.Functions.CreateUseableItem(item, cb)
+    exports.qbx_core:CreateUseableItem(item, cb)
 end
 
 
