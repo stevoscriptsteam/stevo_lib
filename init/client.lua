@@ -6,10 +6,10 @@ end)
 
 -- Framework
 local qb = GetResourceState('qb-core')
-local qbox = GetResourceState('qbx_core')
+local qbx = GetResourceState('qbx_core')
 local esx = GetResourceState('es_extended')
 local ox = GetResourceState('ox_core')
-local framework = ox == 'started' and 'ox' or qbox == 'started' and 'qb' or qb == 'started' and 'qb' or esx == 'started' and 'esx' or nil 
+local framework = ox == 'started' and 'ox' or qbx == 'started' and 'qbx' or qb == 'started' and 'qb' or esx == 'started' and 'esx' or nil 
 stevo_lib.framework = framework 
 
 if not framework then return error('Unable to find framework, This could be because you are using a modified framework name.') end
