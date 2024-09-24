@@ -17,14 +17,12 @@ client_scripts {
     'customize.lua',
     'modules/functions/client.lua',
     --'modules/skills/client.lua',
-    --'modules/business/client.lua'
 }
 
 server_scripts {
     'init/server.lua',
     'modules/functions/server.lua',
     --'modules/skills/server.lua',
-    --'modules/business/server.lua',
     '@oxmysql/lib/MySQL.lua'
 }
 

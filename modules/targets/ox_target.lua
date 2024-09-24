@@ -1,3 +1,4 @@
+local config = lib.require('config')
 stevo_lib.target = {}
 stevo_lib.target.active = {}
 
@@ -30,21 +31,38 @@ function stevo_lib.target.AddTargetEntity(entity, parameters)
     stevo_lib.target.active[entity].invokingResource = resource
 end
 
-function stevo_lib.target.AddBoxZone(name, coords, size, parameters)
-    print('hello')
-    local rotation = parameters.rotation
-    local id = exports.ox_target:addBoxZone({
-        coords = coords,
-        size = size,
-        rotation = rotation,
-        debug = false,
-        options = convert(parameters)
-    })
-    local resource = GetInvokingResource()
-    stevo_lib.target.active[name] = {}
-    stevo_lib.target.active[name].id = id
-    stevo_lib.target.active[name].type = 'zone'
-    stevo_lib.target.active[name].invokingResource = resource
+if config.useInteract then 
+    function stevo_lib.target.AddBoxZone(name, coords, size, parameters)
+
+        exports.interact:AddInteraction({
+            coords = coords,
+            id = name, -- needed for removing interactions
+            options = convert(parameters)
+        })
+        
+        local resource = GetInvokingResource()
+        stevo_lib.target.active[name] = {}
+        stevo_lib.target.active[name].id = name
+        stevo_lib.target.active[name].type = 'zone'
+        stevo_lib.target.active[name].invokingResource = resource
+    end
+else
+    function stevo_lib.target.AddBoxZone(name, coords, size, parameters)
+
+        local rotation = parameters.rotation
+        local id = exports.ox_target:addBoxZone({
+            coords = coords,
+            size = size,
+            rotation = rotation,
+            debug = false,
+            options = convert(parameters)
+        })
+        local resource = GetInvokingResource()
+        stevo_lib.target.active[name] = {}
+        stevo_lib.target.active[name].id = id
+        stevo_lib.target.active[name].type = 'zone'
+        stevo_lib.target.active[name].invokingResource = resource
+    end
 end
 
 function stevo_lib.target.RemoveZone(zone)
@@ -73,7 +91,11 @@ local function resourceStopped(resource)
                 optionNames[#optionNames + 1] = option.name
             end
             if target.type == 'zone' then
-                exports.ox_target:removeZone(target.id)
+                if config.useInteract then
+                    exports.interact:RemoveInteraction(target.id)
+                else
+                    exports["qb-target"]:RemoveZone(target.id)
+                end
                 stevo_lib.target.active[_] = {}
             elseif target.type == 'entity' then
                 if DoesEntityExist(target.entity) then 

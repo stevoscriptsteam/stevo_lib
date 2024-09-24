@@ -1,4 +1,6 @@
 return {
+
+    useInteract = false, -- If https://github.com/darktrovx/interact should be used where possible
     
     NotifyType = 'ox_lib', -- Support for 'ox_lib' 'qb' 'esx' 'QBOX' 'okok' and 'custom' (custom requires editing)
 

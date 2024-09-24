@@ -38,8 +38,6 @@ function openSkillsMenu()
  
 end
 
-
-
 if config.skillsCommand then 
     RegisterCommand(locale('skills_command'), openSkillsMenu)
 end

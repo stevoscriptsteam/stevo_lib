@@ -14,15 +14,17 @@ stevo_lib.framework = framework
 
 if not framework then return error('Unable to find framework, This could be because you are using a modified framework name.') end
 
--- Target
-local qb_trgt = GetResourceState('qb-target')
-local ox_trgt = GetResourceState('ox_target')
-local trgt = ox_trgt == 'started' and 'ox_target' or qb_trgt == 'started' and 'qb-target' or nil 
-stevo_lib.target = trgt
 
-if ox_trgt == 'started' then 
-    stevo_lib.target = 'ox_target'
-end
+    -- Target
+    local qb_trgt = GetResourceState('qb-target')
+    local ox_trgt = GetResourceState('ox_target')
+    local trgt = ox_trgt == 'started' and 'ox_target' or qb_trgt == 'started' and 'qb-target' or nil 
+    stevo_lib.target = trgt
+
+    if ox_trgt == 'started' then 
+        stevo_lib.target = 'ox_target'
+    end
+
 
 if not trgt then return error('Unable to find target, This could be because you are using a modified target name.') end
 
