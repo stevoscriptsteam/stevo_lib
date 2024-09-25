@@ -1,6 +1,7 @@
 local config = lib.require('config')
+local activeTargets = {}
 stevo_lib.target = {}
-stevo_lib.target.active = {}
+
 
 local function convert(options)
     local distance = options.distance
@@ -25,10 +26,10 @@ end
 function stevo_lib.target.AddTargetEntity(entity, parameters)
     exports.ox_target:addLocalEntity(entity, convert(parameters))
     local resource = GetInvokingResource()
-    stevo_lib.target.active[entity] = {}
-    stevo_lib.target.active[entity].entity = entity
-    stevo_lib.target.active[entity].type = 'entity'
-    stevo_lib.target.active[entity].invokingResource = resource
+    activeTargets[entity] = {}
+    activeTargets[entity].entity = entity
+    activeTargets[entity].type = 'entity'
+    activeTargets[entity].invokingResource = resource
 end
 
 if config.useInteract then 
@@ -36,15 +37,15 @@ if config.useInteract then
 
         exports.interact:AddInteraction({
             coords = coords,
-            id = name, -- needed for removing interactions
+            id = name, 
             options = convert(parameters)
         })
         
         local resource = GetInvokingResource()
-        stevo_lib.target.active[name] = {}
-        stevo_lib.target.active[name].id = name
-        stevo_lib.target.active[name].type = 'zone'
-        stevo_lib.target.active[name].invokingResource = resource
+        activeTargets[name] = {}
+        activeTargets[name].id = name
+        activeTargets[name].type = 'zone'
+        activeTargets[name].invokingResource = resource
     end
 else
     function stevo_lib.target.AddBoxZone(name, coords, size, parameters)
@@ -58,16 +59,17 @@ else
             options = convert(parameters)
         })
         local resource = GetInvokingResource()
-        stevo_lib.target.active[name] = {}
-        stevo_lib.target.active[name].id = id
-        stevo_lib.target.active[name].type = 'zone'
-        stevo_lib.target.active[name].invokingResource = resource
+        activeTargets[name] = {}
+        activeTargets[name].id = id
+        activeTargets[name].type = 'zone'
+        activeTargets[name].invokingResource = resource
+
     end
 end
 
 function stevo_lib.target.RemoveZone(zone)
-    exports.ox_target:removeZone(stevo_lib.target.active[zone].id)
-    stevo_lib.target.active[zone] = {}
+    exports.ox_target:removeZone(activeTargets[zone].id)
+    activeTargets[zone] = {}
 end
 
 
@@ -76,35 +78,40 @@ function stevo_lib.target.addGlobalPed(name, options)
     exports.ox_target:addGlobalPed(convert(options))
 
     local resource = GetInvokingResource()
-    stevo_lib.target.active[name] = {}
-    stevo_lib.target.active[name].id = name
-    stevo_lib.target.active[name].type = 'globalPed'
-    stevo_lib.target.active[name].options = convert(options)
-    stevo_lib.target.active[name].invokingResource = resource
+    activeTargets[name] = {}
+    activeTargets[name].id = name
+    activeTargets[name].type = 'globalPed'
+    activeTargets[name].options = convert(options)
+    activeTargets[name].invokingResource = resource
 end
 
 local function resourceStopped(resource)
-    for _, target in pairs(stevo_lib.target.active) do
-        if target.invokingResource == resource then 
-            local optionNames = {}
-            for _, option in ipairs(target.options) do
-                optionNames[#optionNames + 1] = option.name
+    for _, target in pairs(activeTargets) do
+        if target.invokingResource == resource then
+
+            if target.options then  
+                local optionNames = {}
+                for _, option in ipairs(target.options) do
+                    optionNames[#optionNames + 1] = option.name
+                end
             end
+
             if target.type == 'zone' then
+
                 if config.useInteract then
                     exports.interact:RemoveInteraction(target.id)
                 else
-                    exports["qb-target"]:RemoveZone(target.id)
+                    exports.ox_target:removeZone(target.id)
                 end
-                stevo_lib.target.active[_] = {}
+                activeTargets[_] = {}
             elseif target.type == 'entity' then
                 if DoesEntityExist(target.entity) then 
                     exports.ox_target:removeLocalEntity(target.entity)
                 end
-                stevo_lib.target.active[_] = {}
+                activeTargets[_] = {}
             elseif target.type == 'globalPed' then
                 exports.ox_target:removeGlobalPed(optionNames)
-                stevo_lib.target.active[_] = {}
+                activeTargets[_] = {}
             end
         end
     end
