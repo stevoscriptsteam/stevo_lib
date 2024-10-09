@@ -32,7 +32,7 @@ function stevo_lib.GetPlayerJobInfo(source)
         name = job.name,
         label = job.label,
         grade = job.grade,
-        gradeLabel = job.grade_label,
+        gradeName = job.grade_label,
     }
     return jobInfo
 end
