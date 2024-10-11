@@ -68,3 +68,13 @@ end)
 RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)
     PlayerData = val
 end)
+
+AddEventHandler('gameEventTriggered', function(event, data)
+    if event ~= 'CEventNetworkEntityDamage' then return end
+    local victim, victimDied = data[1], data[4]
+    if not IsPedAPlayer(victim) then return end
+    local player = PlayerId()
+    if victimDied and NetworkGetPlayerIndexFromPed(victim) == player and (IsPedDeadOrDying(victim, true) or IsPedFatallyInjured(victim)) then
+        TriggerEvent('stevo_lib:playerDied')
+    end
+end)

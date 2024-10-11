@@ -39,11 +39,14 @@ end)
 
 AddEventHandler('esx:onPlayerDeath', function(data)
     isDead = true
+    TriggerEvent('stevo_lib:playerDied')
 end)
 		
 RegisterNetEvent('esx:playerLoaded', function()
     TriggerEvent('stevo_lib:playerLoaded')
 end)
+
+
 
 
 
