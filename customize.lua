@@ -39,7 +39,7 @@ function stevo_lib.displayTextUI(text, key)
 	local invokingResource = GetInvokingResource()
 	local displayedTextUIs = #displayedTextUI
 	local id = displayedTextUIs+1
-	if displayedTextUIs == 1 and config.TextUIType ~= 'ls_textui' then return print('ERROR: Cannot display TextUI > TextUI already displaying!! InvokingResource: '..invokingResource) end
+	if displayedTextUIs == 1 and config.TextUIType ~= 'ls_textui' then return error('Cannot display TextUI > TextUI already displaying!! InvokingResource: '..invokingResource) end
 
 
 	if config.TextUIType == 'ox_lib' then
@@ -51,6 +51,10 @@ function stevo_lib.displayTextUI(text, key)
 		exports.ls_textui:showTextUI(id, key, text)
 	end
 
+	if config.TextUIType == 'custom' then
+		return error('config.TextUIType = custom but no custom TextUI was added.') -- Remove me if using custom textui.
+	end
+
 	displayedTextUI[id] = true
 
 	return id
@@ -60,7 +64,7 @@ end
 function stevo_lib.hideTextUI(id)
 	local invokingResource = GetInvokingResource()
 	local displayedTextUIs = #displayedTextUI
-	if displayedTextUIs == 0 then return print('ERROR: Cannot hide TextUI > TextUI not displaying!! InvokingResource: '..invokingResource) end
+	if displayedTextUIs == 0 then return error('Cannot hide TextUI > TextUI not displaying!! InvokingResource: '..invokingResource) end
 
 
 	if config.TextUIType == 'ox_lib' then
@@ -69,6 +73,10 @@ function stevo_lib.hideTextUI(id)
 
 	if config.TextUIType == 'ls_textui' then
 		exports.ls_textui:hideTextUI(id)
+	end
+
+	if config.TextUIType == 'custom' then
+		return error('config.TextUIType = custom but no custom TextUI was added.') -- Remove me if using custom textui.
 	end
 
 	displayedTextUI[id] = nil
