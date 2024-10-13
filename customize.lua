@@ -1,4 +1,5 @@
 local config = lib.require('config')
+local displayedTextUI = {}
 
 
 
@@ -29,6 +30,48 @@ function stevo_lib.Notify(msg, type, duration)
 	elseif config.NotifyType == 'custom' then
 		return error('config.NotifyType = custom but no custom Notify was added.') -- Remove me if using custom notify.
 	end
+end
+
+---@param text string
+---@param key string
+---@return number
+function stevo_lib.displayTextUI(text, key)
+	local invokingResource = GetInvokingResource()
+	local displayedTextUIs = #displayedTextUI
+	local id = displayedTextUIs+1
+	if displayedTextUIs == 1 and config.TextUIType ~= 'ls_textui' then return print('ERROR: Cannot display TextUI > TextUI already displaying!! InvokingResource: '..invokingResource) end
+
+
+	if config.TextUIType == 'ox_lib' then
+		lib.showTextUI(text)
+	end
+
+
+	if config.TextUIType == 'ls_textui' then
+		exports.ls_textui:showTextUI(id, key, text)
+	end
+
+	displayedTextUI[id] = true
+
+	return id
+end
+
+---@param id number
+function stevo_lib.hideTextUI(id)
+	local invokingResource = GetInvokingResource()
+	local displayedTextUIs = #displayedTextUI
+	if displayedTextUIs == 0 then return print('ERROR: Cannot hide TextUI > TextUI not displaying!! InvokingResource: '..invokingResource) end
+
+
+	if config.TextUIType == 'ox_lib' then
+		lib.hideTextUI()
+	end
+
+	if config.TextUIType == 'ls_textui' then
+		exports.ls_textui:hideTextUI(id)
+	end
+
+	displayedTextUI[id] = nil
 end
 
 
