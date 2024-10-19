@@ -9,6 +9,18 @@ function stevo_lib.GetPlayerGroups()
     return Player.job.name, Player.gang.name
 end
 
+
+function stevo_lib.GetPlayerGroupInfo()
+    local Player = QBCore.Functions.GetPlayerData()
+    local jobInfo = {
+        name = Player.job.name,
+        grade = Player.job.grade.level,
+        label = Player.job.label
+    }
+    
+    return jobInfo
+end
+
 function stevo_lib.IsDead()
     playerData = QBCore.Functions.GetPlayerData()
     return playerData.metadata.isdead

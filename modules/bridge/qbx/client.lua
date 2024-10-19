@@ -7,6 +7,20 @@ function stevo_lib.GetPlayerGroups()
     return Player.job.name, Player.gang.name
 end
 
+
+function stevo_lib.GetPlayerGroupInfo()
+    local Player = exports.qbx_core:GetPlayerData()
+    local jobInfo = {
+        name = Player.job.name,
+        grade = Player.job.grade.level,
+        label = Player.job.label
+    }
+
+    print(json.encode(jobInfo))
+    
+    return jobInfo
+end
+
 function stevo_lib.IsDead()
     playerData = exports.qbx_core:GetPlayerData()
     return playerData.metadata.isdead

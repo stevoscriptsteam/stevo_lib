@@ -9,6 +9,16 @@ function stevo_lib.GetPlayerGroups()
     return ESX.PlayerData.job.name, false
 end
 
+function stevo_lib.GetPlayerGroupInfo()
+    local jobInfo = {
+        name = ESX.PlayerData.job.name,
+        grade = ESX.PlayerData.job.grade,
+        label = ESX.PlayerData.job.label
+    }
+    
+    return jobInfo
+end
+
 function stevo_lib.IsDead()
     return isDead
 end
