@@ -1,0 +1,32 @@
+{
+
+    "skills_command": "openskills",
+    "skills_menu_title": "Mängija oskused",
+    "skills_no_skills": "Teil puuduvad oskused!",
+
+    "deployed_business_database": "Deployed database table for stevo_businesses",
+    "deployed_employee_database": "Deployed database table for stevo_businesses_employees",
+    "registered_business" : "Registered Business - %s - %s - %s",
+    "created_register" : "Created Register - %s - %s ",
+
+    "register_label" : "Registeeri",
+    "staff_register_label" : "Tegutse registeerimisega",
+    "register_in_use" : "Registreerumine hetkel kasutusel",
+    "register_availible" : "Registreerumine saadaval",
+    "clear_register" : "Tühjenda register",
+    "cleared_register" : "Tühjendasite registri: %s",
+    "use_register" : "Loo arve",
+    "bill_item" : "Arve ese: %s",
+    "bill_amount" : "Arve summa: $%s",
+    "bill_amount_empty" : "Arve summa: Tühi",
+    "bill_create" : "Loo Arve",
+    "cancelled_input" : "Te katkestasite selle tegevuse!",
+    "bill_create_item_set" : "Määra arve ese %s",
+    "bill_create_amount_set" : "Määra arve summa $%s",
+    "bill_create_input_amount" : "Arve summa",
+    "bill_create_input_item" : "Arve ese",
+    "bill_not_set" : "Tühi",
+    "created_bill" : "Saatsie arve $%s kirjeldusega %s",
+    "register_not_open" : "Registreerimine on suletud",
+    "pay_bill" : "Maksa arve"
+ }
