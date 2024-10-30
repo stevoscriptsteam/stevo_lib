@@ -1,37 +1,9 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-
-function stevo_lib.bridgeNotify(msg, type, duration)
-	QBCore.Functions.Notify(msg, 'primary', duration)
-end
-
-function stevo_lib.GetPlayerGroups()
-    local Player = QBCore.Functions.GetPlayerData()
-    return Player.job.name, Player.gang.name
-end
+local PlayerData
 
 
-function stevo_lib.GetPlayerGroupInfo()
-    local Player = QBCore.Functions.GetPlayerData()
-    local jobInfo = {
-        name = Player.job.name,
-        grade = Player.job.grade.level,
-        label = Player.job.label
-    }
-    
-    return jobInfo
-end
 
-function stevo_lib.IsDead()
-    playerData = QBCore.Functions.GetPlayerData()
-    return playerData.metadata.isdead
-end
-
-function stevo_lib.GetSex()
-    local Player = QBCore.Functions.GetPlayerData()
-    return Player.charinfo.gender
-end
-
-function GetConvertedClothes(oldClothes)
+local function GetConvertedClothes(oldClothes)
     local clothes = {}
     local components = {
         ['arms'] = "arms",
@@ -62,6 +34,36 @@ function GetConvertedClothes(oldClothes)
         end
     end
     return clothes
+end
+
+
+function stevo_lib.bridgeNotify(msg, type, duration)
+    QBCore.Functions.Notify(msg, 'primary', duration)
+end
+
+function stevo_lib.GetPlayerGroups()
+    local Player = QBCore.Functions.GetPlayerData()
+    return Player.job.name, Player.gang.name
+end
+
+function stevo_lib.GetPlayerGroupInfo()
+    local Player = QBCore.Functions.GetPlayerData()
+    local jobInfo = {
+        name = Player.job.name,
+        grade = Player.job.grade.level,
+        label = Player.job.label
+    }
+    return jobInfo
+end
+
+function stevo_lib.GetSex()
+    local Player = QBCore.Functions.GetPlayerData()
+    return Player.charinfo.gender
+end
+
+function stevo_lib.IsDead()
+    PlayerData = QBCore.Functions.GetPlayerData()
+    return PlayerData.metadata.isdead
 end
 
 function stevo_lib.SetOutfit(outfit) 

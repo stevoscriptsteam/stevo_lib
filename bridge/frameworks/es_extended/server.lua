@@ -1,32 +1,29 @@
 local ESX = exports.es_extended:getSharedObject()
 local ox_inventory = GetResourceState('ox_inventory') == 'started' and true or false
 
-function stevo_lib.GetPlayer(source)
-    return ESX.GetPlayerFromId(source)
-end
 
 function stevo_lib.GetIdentifier(source)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     return player.getIdentifier()
 end
 
 function stevo_lib.GetName(source)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     return player.getName()
 end
 
-function stevo_lib.GetJobCount(source, job)
+function stevo_lib. GetJobCount(source, job)
     return ESX.GetExtendedPlayers('job', job)
 end
 
 function stevo_lib.GetPlayerGroups(source)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     local job = player.getJob()
     return job.name, false
 end
 
 function stevo_lib.GetPlayerJobInfo(source)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     local job = player.getJob()
     local jobInfo = {
         name = job.name,
@@ -56,33 +53,33 @@ function stevo_lib.GetPlayers()
 end
 
 function stevo_lib.GetDob(source)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     return player.variables.dateofbirth
 end
 
 function stevo_lib.GetSex(source)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     return player.variables.sex
 end
 
 function stevo_lib.RemoveItem(source, item, count)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     return player.removeInventoryItem(item, count)
 end
 
 function stevo_lib.AddItem(source, item, count)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     return player.addInventoryItem(item, count)
 end
 
 function stevo_lib.HasItem(source, _item)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     local item = player.getInventoryItem(_item)
     return item?.amount or item?.count or 0
 end
 
 function stevo_lib.GetInventory(source)
-    local player = stevo_lib.GetPlayer(source)
+    local player = ESX.GetPlayerFromId(source)
     local items = {}
     local data = ox_inventory and exports.ox_inventory:GetInventoryItems(source) or player.getInventory()
     for i=1, #data do 

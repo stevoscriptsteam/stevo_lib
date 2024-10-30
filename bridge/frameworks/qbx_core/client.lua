@@ -1,37 +1,6 @@
-function stevo_lib.bridgeNotify(msg, type, duration)
-	exports.qbx_core:Notify(msg, 'primary', duration)
-end
+local qbx_core = exports['qbx_core']
 
-function stevo_lib.GetPlayerGroups()
-    local Player = exports.qbx_core:GetPlayerData()
-    return Player.job.name, Player.gang.name
-end
-
-
-function stevo_lib.GetPlayerGroupInfo()
-    local Player = exports.qbx_core:GetPlayerData()
-    local jobInfo = {
-        name = Player.job.name,
-        grade = Player.job.grade.level,
-        label = Player.job.label
-    }
-
-    print(json.encode(jobInfo))
-    
-    return jobInfo
-end
-
-function stevo_lib.IsDead()
-    playerData = exports.qbx_core:GetPlayerData()
-    return playerData.metadata.isdead
-end
-
-function stevo_lib.GetSex()
-    local Player = exports.qbx_core:GetPlayerData()
-    return Player.charinfo.gender
-end
-
-function GetConvertedClothes(oldClothes)
+local function GetConvertedClothes(oldClothes)
     local clothes = {}
     local components = {
         ['arms'] = "arms",
@@ -54,7 +23,7 @@ function GetConvertedClothes(oldClothes)
         ['helmet_1'] = 'helmet_2',
         ['chain_1'] = 'chain_2',
     }
-    for k,v in pairs(oldClothes) do 
+    for k, v in pairs(oldClothes) do 
         local component = components[k]
         if component then 
             local texture = textures[k] and (oldClothes[textures[k]] or 0) or 0
@@ -64,14 +33,43 @@ function GetConvertedClothes(oldClothes)
     return clothes
 end
 
-function stevo_lib.SetOutfit(outfit) 
+function stevo_lib.bridgeNotify(msg, type, duration)
+    qbx_core:Notify(msg, 'primary', duration)
+end
+
+function stevo_lib.GetPlayerGroups()
+    local Player = qbx_core:GetPlayerData()
+    return Player.job.name, Player.gang.name
+end
+
+function stevo_lib.GetPlayerGroupInfo()
+    local Player = qbx_core:GetPlayerData()
+    local jobInfo = {
+        name = Player.job.name,
+        grade = Player.job.grade.level,
+        label = Player.job.label
+    }
+    print(json.encode(jobInfo))
+    return jobInfo
+end
+
+function stevo_lib.GetSex()
+    local Player = qbx_core:GetPlayerData()
+    return Player.charinfo.gender
+end
+
+function stevo_lib.IsDead()
+    local playerData = qbx_core:GetPlayerData()
+    return playerData.metadata.isdead
+end
+
+function stevo_lib.SetOutfit(outfit)
     if outfit then 
         TriggerEvent('qb-clothing:client:loadOutfit', {outfitData = GetConvertedClothes(outfit)})
     else 
         TriggerServerEvent("qb-clothes:loadPlayerSkin")
-    end 
+    end
 end
-
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     TriggerEvent('stevo_lib:playerLoaded')
@@ -90,3 +88,4 @@ AddEventHandler('gameEventTriggered', function(event, data)
         TriggerEvent('stevo_lib:playerDied')
     end
 end)
+

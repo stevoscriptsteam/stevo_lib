@@ -1,9 +1,9 @@
 local config = lib.require('config')
 local displayedTextUI = {}
 
-
-
 function stevo_lib.Notify(msg, type, duration)
+
+	print('hello')
 
 	if not duration then duration = 3000 end
 		
@@ -11,10 +11,9 @@ function stevo_lib.Notify(msg, type, duration)
 		if stevo_lib.framework == config.NotifyType then 
 			stevo_lib.bridgeNotify(msg, type, duration) 
 		else 
-			return error('config.NotifyType = '..config.NotifyType..' but server is not '..config.NotifyType..'') 
+			return error('[Stevo Library] config.NotifyType = '..config.NotifyType..' but server is not '..config.NotifyType..'') 
 		end 
 	end
-
 
 
 	if config.NotifyType == 'ox_lib' then
@@ -81,5 +80,7 @@ function stevo_lib.hideTextUI(id)
 
 	displayedTextUI[id] = nil
 end
+
+
 
 

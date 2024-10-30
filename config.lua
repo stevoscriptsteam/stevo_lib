@@ -1,15 +1,8 @@
 return {
-
-    useInteract = false, -- If https://github.com/darktrovx/interact should be used where possible
     
-    NotifyType = 'ox_lib', -- Support for 'ox_lib' 'qb' 'esx' 'QBOX' 'okok' and 'custom' (custom requires editing)
+    NotifyType = 'ox_lib', -- Support for 'ox_lib' 'qb-core' 'es_extended' 'qbx_core' 'okok' and 'custom' (custom requires editing)
 
     TextUIType = 'ox_lib', -- Support for 'ox_lib' 'ls_textui' (project ls) and 'custom' (custom requires editing)
 
-    businesses = {
-        logs = false, -- Can be 'discord' or 'oxlogs' Check the documentation for info on installing discord logs.
-    },
-
-    skillsCommand = true,
-    skillsKeybind = true
+    debug = true,
 }
