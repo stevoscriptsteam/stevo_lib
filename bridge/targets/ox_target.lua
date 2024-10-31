@@ -73,6 +73,7 @@ return {
                 debug = false,
                 options = convert(parameters)
             })
+            print('Zone Id: ', id)
             activeTargets[name] = {
                 id = id,
                 type = 'zone',
@@ -81,6 +82,7 @@ return {
     end,
 
     RemoveZone = function(zone)
+        print('New Zone Id: ', activeTargets[zone].id)
         exports.ox_target:removeZone(activeTargets[zone].id)
         activeTargets[zone] = {}
     end,
