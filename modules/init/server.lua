@@ -16,7 +16,7 @@ if ox == 'started' then
     return error('[Stevo Library] ox_core is not supported by stevo_lib currently.')
 end
 
-local framework = qbx == 'started' and 'qbx_core' or qb == 'started' and 'qb_core' or esx == 'started' and 'es_extended' or nil 
+local framework = qbx == 'started' and 'qbx_core' or qb == 'started' and 'qb-core' or esx == 'started' and 'es_extended' or nil 
 if not framework then 
     return error('[Stevo Library] Unable to find framework, This could be because you are using a modified framework name.') 
 end
