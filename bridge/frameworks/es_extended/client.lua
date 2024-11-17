@@ -1,4 +1,5 @@
 local ESX = exports.es_extended:getSharedObject()
+local PlayerData = ESX.GetPlayerData()
 local isDead
 
 
@@ -7,21 +8,21 @@ function stevo_lib.bridgeNotify(msg, type, duration)
 end
 
 function stevo_lib.GetPlayerGroups()
-    return ESX.PlayerData.job.name, false
+    return PlayerData.job.name, false
 end
 
 function stevo_lib.GetPlayerGroupInfo()
     local jobInfo = {
-        name = ESX.PlayerData.job.name,
-        grade = ESX.PlayerData.job.grade,
-        label = ESX.PlayerData.job.label
+        name = PlayerData.job.name,
+        grade = PlayerData.job.grade,
+        label = PlayerData.job.label
     }
     
     return jobInfo
 end
 
 function stevo_lib.GetSex()
-    return ESX.PlayerData.sex == 'Male' and 1 or 2
+    return PlayerData.sex == 'Male' and 1 or 2
 end
 
 function stevo_lib.IsDead()
@@ -46,7 +47,7 @@ AddEventHandler('esx:onPlayerSpawn', function(noAnim)
 end)
 
 RegisterNetEvent('esx:setJob', function(job)
-    ESX.PlayerData.job = job
+    PlayerData.job = job
 end)
 
 AddEventHandler('esx:onPlayerDeath', function(data)
@@ -55,14 +56,6 @@ AddEventHandler('esx:onPlayerDeath', function(data)
 end)
 		
 RegisterNetEvent('esx:playerLoaded', function()
+    PlayerData = ESX.GetPlayerData()
     TriggerEvent('stevo_lib:playerLoaded')
 end)
-
-
-
-
-
-
-
-
-
