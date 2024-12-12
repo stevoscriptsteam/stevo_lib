@@ -46,16 +46,17 @@ function stevo_lib.GetPlayerGroups()
     return Player.job.name, Player.gang.name
 end
 
-function stevo_lib.GetPlayerGroupInfo(job)
+function stevo_lib.GetPlayerGroupInfo()
     local Player = QBCore.Functions.GetPlayerData()
-    local info 
-    if job then 
+    local info = {}
+
+    if Player.job then
         info = {
             name = Player.job.name,
             grade = Player.job.grade.level,
             label = Player.job.label
         }
-    else 
+    elseif Player.gang then
         info = {
             name = Player.gang.name,
             grade = Player.gang.grade.level,
