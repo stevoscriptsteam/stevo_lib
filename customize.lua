@@ -3,8 +3,6 @@ local displayedTextUI = {}
 
 function stevo_lib.Notify(msg, type, duration)
 
-	print('hello')
-
 	if not duration then duration = 3000 end
 		
 	if config.NotifyType == 'qb' or config.NotifyType == 'ESX' or config.NotifyType == 'QBOX' then
