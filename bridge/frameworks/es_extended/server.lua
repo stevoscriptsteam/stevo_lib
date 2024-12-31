@@ -19,7 +19,7 @@ end
 function stevo_lib.GetPlayerGroups(source)
     local player = ESX.GetPlayerFromId(source)
     local job = player.getJob()
-    return job.name, false
+    return job, false
 end
 
 function stevo_lib.GetPlayerJobInfo(source)

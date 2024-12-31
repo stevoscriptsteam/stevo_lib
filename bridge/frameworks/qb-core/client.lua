@@ -2,7 +2,6 @@ local QBCore = exports['qb-core']:GetCoreObject()
 local PlayerData
 
 
-
 local function GetConvertedClothes(oldClothes)
     local clothes = {}
     local components = {
