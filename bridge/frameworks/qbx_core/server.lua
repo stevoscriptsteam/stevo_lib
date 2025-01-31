@@ -84,7 +84,7 @@ end
 function stevo_lib.HasItem(source, _item)
     local player = qbx_core:GetPlayer(source)
     local item = player.Functions.GetItemByName(_item)
-    return item and (item.count or item.amount or 0)
+    return item and (item.count or item.amount) or 0
 end
 
 function stevo_lib.GetInventory(source)
