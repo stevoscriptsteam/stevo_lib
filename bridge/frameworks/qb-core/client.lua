@@ -65,6 +65,8 @@ function stevo_lib.GetPlayerGroupInfo(job)
     return info
 end
 
+
+
 function stevo_lib.GetSex()
     local Player = QBCore.Functions.GetPlayerData()
     return Player.charinfo.gender

@@ -102,6 +102,13 @@ function stevo_lib.GetInventory(source)
     return items
 end
 
+function stevo_lib.SetJob(source, jobName, jobGrade)
+    local player = qbx_core:GetPlayer(source)
+    local job = tostring(jobName)
+    local grade = tonumber(jobGrade) or 0 
+    return player.Functions.SetJob(job, grade)
+end
+
 function stevo_lib.RegisterUsableItem(item, cb)
     qbx_core:CreateUseableItem(item, cb)
 end
