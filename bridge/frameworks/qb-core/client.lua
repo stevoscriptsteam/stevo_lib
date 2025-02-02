@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-set-field
 local QBCore = exports['qb-core']:GetCoreObject()
 local PlayerData
 

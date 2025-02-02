@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-set-field
 local qbx_core = exports['qbx_core']
 
 local function GetConvertedClothes(oldClothes)

@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-set-field
 local ESX = exports.es_extended:getSharedObject()
 local PlayerData = ESX.GetPlayerData()
 local isDead
@@ -17,7 +18,7 @@ function stevo_lib.GetPlayerGroupInfo()
         grade = PlayerData.job.grade,
         label = PlayerData.job.label
     }
-    
+
     return jobInfo
 end
 
@@ -29,18 +30,17 @@ function stevo_lib.IsDead()
     return isDead
 end
 
-function stevo_lib.SetOutfit(outfit) 
-    if outfit then 
+function stevo_lib.SetOutfit(outfit)
+    if outfit then
         ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
             TriggerEvent('skinchanger:loadClothes', skin, outfit)
         end)
-    else 
+    else
         ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
             TriggerEvent('skinchanger:loadSkin', skin)
         end)
-    end 
+    end
 end
-
 
 AddEventHandler('esx:onPlayerSpawn', function(noAnim)
     isDead = nil
@@ -54,7 +54,7 @@ AddEventHandler('esx:onPlayerDeath', function(data)
     isDead = true
     TriggerEvent('stevo_lib:playerDied')
 end)
-		
+
 RegisterNetEvent('esx:playerLoaded', function()
     PlayerData = ESX.GetPlayerData()
     TriggerEvent('stevo_lib:playerLoaded')
