@@ -40,10 +40,10 @@ end
 ld()
 
 -- Detect and load targeting system
-local qb_target = GetResourceState('qb-target')
-local ox_target = GetResourceState('ox_target')
-local interact = GetResourceState('interact')
-local target = ox_target == 'started' and 'ox_target' or qb_target == 'started' and 'qb-target' or interact == 'started' and 'interact' or nil 
+local qb_target = GetResourceState('qb-target') == 'started'
+local ox_target = GetResourceState('ox_target') == 'started'
+local interact = GetResourceState('interact') == 'started'
+local target = ox_target and 'ox_target' or qb_target and 'qb-target' or interact and 'interact' or nil
 
 if not target then 
     print('[Stevo Library] Unable to find target, defaulting to placeholder.')
