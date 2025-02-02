@@ -7,16 +7,16 @@ exports("import", function()
 end)
 
 -- Framework and dependency detection
-local qb = GetResourceState('qb-core')
-local qbx = GetResourceState('qbx_core')
-local esx = GetResourceState('es_extended')
-local ox = GetResourceState('ox_core')
+local qb = GetResourceState('qb-core') == 'started'
+local qbx = GetResourceState('qbx_core') == 'started'
+local esx = GetResourceState('es_extended') == 'started'
+local ox = GetResourceState('ox_core') == 'started'
 
 if ox == 'started' then 
-    return error('[Stevo Library] ox_core is not supported by stevo_lib currently.')
+    lib.print.warn('ox_core support for stevo_lib is experimental. Use with care.')
 end
 
-local framework = qbx == 'started' and 'qbx_core' or qb == 'started' and 'qb-core' or esx == 'started' and 'es_extended' or nil 
+local framework = qbx and 'qbx_core' or qb and 'qb-core' or esx and 'es_extended' or ox and 'ox_core' or nil
 if not framework then 
     return error('[Stevo Library] Unable to find framework, This could be because you are using a modified framework name.') 
 end
@@ -61,7 +61,7 @@ local keys = qb_vehiclekeys == 'started' and 'qb-vehiclekeys' or qbx_vehiclekeys
 
 if not keys then 
     print('[Stevo Library] Unable to find your keys system, defaulting to placeholder.')
-    keys = 'placeholder' 
+    keys = 'placeholder'
 end
 
 stevo_lib.keys = require(string.format('bridge.keys.%s.client', keys))
