@@ -1,6 +1,6 @@
 return {
 
   HasKeys = function(vehicle)
-    return exports.qbx_vehiclekeys:HasKeys(vehicle)
+    return exports.qb-vehiclekeys:HasKeys(vehicle)
   end
 }

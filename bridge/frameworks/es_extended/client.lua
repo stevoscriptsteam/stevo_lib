@@ -8,14 +8,10 @@ function stevo_lib.bridgeNotify(msg, type, duration)
 end
 
 function stevo_lib.GetPlayerGroups()
-    PlayerData = ESX.GetPlayerData()
-    
     return PlayerData.job.name, false
 end
 
 function stevo_lib.GetPlayerGroupInfo()
-    PlayerData = ESX.GetPlayerData()
-
     local jobInfo = {
         name = PlayerData.job.name,
         grade = PlayerData.job.grade,

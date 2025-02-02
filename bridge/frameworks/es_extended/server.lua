@@ -95,6 +95,13 @@ function stevo_lib.GetInventory(source)
     return items
 end
 
+function stevo_lib.SetJob(source, jobName, jobGrade)
+    local player = ESX.GetPlayerFromId(source)
+    local job = tostring(jobName)
+    local grade = tonumber(jobGrade)
+    return player.setJob(job, grade)
+end
+
 function stevo_lib.RegisterUsableItem(item, cb)
     ESX.RegisterUsableItem(item, cb)
 end
