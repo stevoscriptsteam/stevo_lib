@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-set-field
 local QBCore = exports['qb-core']:GetCoreObject()
 local ox_inventory = GetResourceState('ox_inventory') == 'started' and true or false
 
@@ -109,7 +110,7 @@ end
 function stevo_lib.SetJob(source, jobName, jobGrade)
     local player = QBCore.Functions.GetPlayer(source)
     local job = tostring(jobName)
-    local grade = tonumber(jobGrade) or 0 
+    local grade = tonumber(jobGrade) or 0
     return player.Functions.SetJob(job, grade)
 end
 

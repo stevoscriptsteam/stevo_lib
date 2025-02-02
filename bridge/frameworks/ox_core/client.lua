@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-set-field
 local Ox = require '@ox_core.lib.init'
 local player = Ox.GetPlayer()
 local isDead
