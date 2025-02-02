@@ -40,15 +40,15 @@ end
 ld()
 
 -- Detect and load keys system
-local qb_vehiclekeys = GetResourceState('qb-vehiclekeys')
-local qbx_vehiclekeys = GetResourceState('qbx_vehiclekeys')
-local renewed_vehiclekeys = GetResourceState('Renewed-VehicleKeys')
-local wasabi_carlock = GetResourceState('wasabi_carlock')
-local keys = qb_vehiclekeys == 'started' and 'qb-vehiclekeys' or qbx_vehiclekeys == 'started' and 'qbx_vehiclekeys' or renewed_vehiclekeys == 'started' and 'Renewed-VehicleKeys' or wasabi_carlock == 'started' and 'wasabi_carlock' or nil
+local qb_vehiclekeys = GetResourceState('qb-vehiclekeys') == 'started'
+local qbx_vehiclekeys = GetResourceState('qbx_vehiclekeys') == 'started'
+local renewed_vehiclekeys = GetResourceState('Renewed-VehicleKeys') == 'started'
+local wasabi_carlock = GetResourceState('wasabi_carlock') == 'started'
+local keys = qb_vehiclekeys and 'qb-vehiclekeys' or qbx_vehiclekeys and 'qbx_vehiclekeys' or renewed_vehiclekeys and 'Renewed-VehicleKeys' or wasabi_carlock and 'wasabi_carlock' or nil
 
 if not keys then 
     print('[Stevo Library] Unable to find your keys system, defaulting to placeholder.')
-    keys = 'placeholder' 
+    keys = 'placeholder'
 end
 
 stevo_lib.keys = require(string.format('bridge.keys.%s.server', keys))
