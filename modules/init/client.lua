@@ -46,7 +46,9 @@ local interact = GetResourceState('interact') == 'started'
 local target = ox_target and 'ox_target' or qb_target and 'qb-target' or interact and 'interact' or nil
 
 if not target then 
-    print('[Stevo Library] Unable to find target, defaulting to placeholder.')
+    if config.debug then 
+        print('[Stevo Library] Unable to find target, defaulting to placeholder.')
+    end
     target = 'placeholder'
 end
 
@@ -60,7 +62,9 @@ local wasabi_carlock = GetResourceState('wasabi_carlock') == 'started'
 local keys = qb_vehiclekeys and 'qb-vehiclekeys' or qbx_vehiclekeys and 'qbx_vehiclekeys' or renewed_vehiclekeys and 'Renewed-VehicleKeys' or wasabi_carlock and 'wasabi_carlock' or nil
 
 if not keys then 
-    print('[Stevo Library] Unable to find your keys system, defaulting to placeholder.')
+    if config.debug then 
+        print('[Stevo Library] Unable to find your keys system, defaulting to placeholder.')
+    end
     keys = 'placeholder'
 end
 
