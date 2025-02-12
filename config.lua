@@ -4,5 +4,5 @@ return {
 
     TextUIType = 'ox_lib', -- Support for 'ox_lib' 'ls_textui' (project ls) and 'custom' (custom requires editing)
 
-    debug = true,
+    debug = false,
 }

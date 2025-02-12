@@ -113,3 +113,24 @@ function stevo_lib.RegisterUsableItem(item, cb)
     qbx_core:CreateUseableItem(item, cb)
 end
 
+function stevo_lib.GetCash(source) 
+    local player = qbx_core:GetPlayer(source) 
+    local cash = tonumber(player.PlayerData.money.cash) 
+    return cash 
+end 
+
+function stevo_lib.GetBank(source)
+    local player = qbx_core:GetPlayer(source) 
+    local bank = tonumber(player.PlayerData.money.bank) 
+    return bank 
+end
+
+function stevo_lib.AddMoney(source, type, amount)
+    local player = qbx_core:GetPlayer(source) 
+    return player.Functions.AddMoney(type, amount)
+end
+
+function stevo_lib.RemoveMoney(source, type, amount) 
+    local player = qbx_core:GetPlayer(source) 
+    return player.Functions.RemoveMoney(type, amount)
+end 
