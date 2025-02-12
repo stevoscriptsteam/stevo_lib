@@ -106,3 +106,34 @@ end
 function stevo_lib.RegisterUsableItem(item, cb)
     ESX.RegisterUsableItem(item, cb)
 end
+
+function stevo_lib.GetCash(source) 
+    local player = ESX.GetPlayerFromId(source) 
+    local cash = tonumber(player.getMoney())
+    return cash 
+end 
+
+function stevo_lib.GetBank(source)
+    local player = ESX.GetPlayerFromId(source) 
+    local amount = tonumber(player.getAccount('bank').getMoney())
+    return amount
+end 
+
+function stevo_lib.AddMoney(source, type, amount)
+    local player = ESX.GetPlayerFromId(source) 
+    if type == "bank" then 
+        return player.addAccountMoney(type, amount)
+    else 
+        return player.addMoney(amount)
+    end 
+end
+
+
+function stevo_lib.RemoveMoney(source, type, amount) 
+    local player = ESX.GetPlayerFromId(source) 
+    if type == "bank" then 
+        return player.removeAccountMoney(type, amount) 
+    else 
+        return player.removeMoney(amount)
+    end 
+end 

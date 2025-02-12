@@ -1,4 +1,5 @@
 local activeTargets = {}
+local config = lib.require('config')
 
 local function convert(options)
     local distance = options.distance
@@ -73,7 +74,9 @@ return {
                 debug = false,
                 options = convert(parameters)
             })
+            if config.debug then 
             print('Zone Id: ', id)
+            end
             activeTargets[name] = {
                 id = id,
                 type = 'zone',
@@ -82,7 +85,9 @@ return {
     end,
 
     RemoveZone = function(zone)
+        if config.debug then 
         print('New Zone Id: ', activeTargets[zone].id)
+        end
         exports.ox_target:removeZone(activeTargets[zone].id)
         activeTargets[zone] = {}
     end,
