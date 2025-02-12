@@ -7,16 +7,16 @@ exports("import", function()
 end)
 
 -- Framework and dependency detection
-local qb = GetResourceState('qb-core')
-local qbx = GetResourceState('qbx_core')
-local esx = GetResourceState('es_extended')
-local ox = GetResourceState('ox_core')
+local qb = GetResourceState('qb-core') == 'started'
+local qbx = GetResourceState('qbx_core') == 'started'
+local esx = GetResourceState('es_extended') == 'started'
+local ox = GetResourceState('ox_core') == 'started'
 
 if ox == 'started' then 
-    return error('[Stevo Library] ox_core is not supported by stevo_lib currently.')
+    lib.print.warn('ox_core support for stevo_lib is experimental. Use with care.')
 end
 
-local framework = qbx == 'started' and 'qbx_core' or qb == 'started' and 'qb-core' or esx == 'started' and 'es_extended' or nil 
+local framework = qbx and 'qbx_core' or qb and 'qb-core' or esx and 'es_extended' or ox and 'ox_core' or nil
 if not framework then 
     return error('[Stevo Library] Unable to find framework, This could be because you are using a modified framework name.') 
 end
@@ -40,10 +40,10 @@ end
 ld()
 
 -- Detect and load targeting system
-local qb_target = GetResourceState('qb-target')
-local ox_target = GetResourceState('ox_target')
-local interact = GetResourceState('interact')
-local target = ox_target == 'started' and 'ox_target' or qb_target == 'started' and 'qb-target' or interact == 'started' and 'interact' or nil 
+local qb_target = GetResourceState('qb-target') == 'started'
+local ox_target = GetResourceState('ox_target') == 'started'
+local interact = GetResourceState('interact') == 'started'
+local target = ox_target and 'ox_target' or qb_target and 'qb-target' or interact and 'interact' or nil
 
 if not target then 
     print('[Stevo Library] Unable to find target, defaulting to placeholder.')
@@ -53,15 +53,15 @@ end
 stevo_lib.target = require(string.format('bridge.targets.%s', target))
 
 -- Detect and load keys system
-local qb_vehiclekeys = GetResourceState('qb-vehiclekeys')
-local qbx_vehiclekeys = GetResourceState('qbx_vehiclekeys')
-local renewed_vehiclekeys = GetResourceState('Renewed-VehicleKeys')
-local wasabi_carlock = GetResourceState('wasabi_carlock')
-local keys = qb_vehiclekeys == 'started' and 'qb-vehiclekeys' or qbx_vehiclekeys == 'started' and 'qbx_vehiclekeys' or renewed_vehiclekeys == 'started' and 'Renewed-VehicleKeys' or wasabi_carlock == 'started' and 'wasabi_carlock' or nil
+local qb_vehiclekeys = GetResourceState('qb-vehiclekeys') == 'started'
+local qbx_vehiclekeys = GetResourceState('qbx_vehiclekeys') == 'started'
+local renewed_vehiclekeys = GetResourceState('Renewed-VehicleKeys') == 'started'
+local wasabi_carlock = GetResourceState('wasabi_carlock') == 'started'
+local keys = qb_vehiclekeys and 'qb-vehiclekeys' or qbx_vehiclekeys and 'qbx_vehiclekeys' or renewed_vehiclekeys and 'Renewed-VehicleKeys' or wasabi_carlock and 'wasabi_carlock' or nil
 
 if not keys then 
     print('[Stevo Library] Unable to find your keys system, defaulting to placeholder.')
-    keys = 'placeholder' 
+    keys = 'placeholder'
 end
 
 stevo_lib.keys = require(string.format('bridge.keys.%s.client', keys))

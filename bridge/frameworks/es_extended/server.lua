@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-set-field
 local ESX = exports.es_extended:getSharedObject()
 local ox_inventory = GetResourceState('ox_inventory') == 'started' and true or false
 
@@ -12,7 +13,7 @@ function stevo_lib.GetName(source)
     return player.getName()
 end
 
-function stevo_lib. GetJobCount(source, job)
+function stevo_lib.GetJobCount(source, job)
     return ESX.GetExtendedPlayers('job', job)
 end
 
@@ -35,7 +36,7 @@ function stevo_lib.GetPlayerJobInfo(source)
 end
 
 function stevo_lib.GetPlayerGangInfo(source)
-    return false    
+    return false
 end
 
 function stevo_lib.GetPlayers()
@@ -82,7 +83,7 @@ function stevo_lib.GetInventory(source)
     local player = ESX.GetPlayerFromId(source)
     local items = {}
     local data = ox_inventory and exports.ox_inventory:GetInventoryItems(source) or player.getInventory()
-    for i=1, #data do 
+    for i = 1, #data do
         local item = data[i]
         items[#items + 1] = {
             name = item.name,
