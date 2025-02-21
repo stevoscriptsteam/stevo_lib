@@ -12,6 +12,8 @@ Whether you're using our resources or developing custom resources, stevo_lib ens
 - Scalable and Extendable: Built to grow with your projects, supporting future updates and enhancements.
 
 
-## Acknowledgements 
+## Credits
 
 - Sync *(Developer)*
+- Kayne *(Developer)*
+- Steve *(Developer)*
