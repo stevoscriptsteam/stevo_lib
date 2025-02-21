@@ -1,12 +1,17 @@
-## stevo_lib
-A library of functions & a bridge for Stevo Scripts resources.
+# StevoScripts Library (stevo_lib)
 
-Documentation: https://docs.stevoscripts.com/free-scripts/stevo_lib
-<br>
-Discord: https://discord.gg/stevoscripts
-<br>
-Website: https://www.store.stevoscripts.com
+StevoScripts Library (stevo_lib) is the backbone of all Stevo Scripts resources. It serves as a robust library of functions and a versatile bridge, enabling seamless connectivity between various frameworks, inventories, key systems, targets, and more.
+
+Whether you're using our resources or developing custom resources, stevo_lib ensures smooth communication and interaction across multiple platforms and setups.
+
+## Key Features
+
+- Universal Compatibility: Connects effortlessly with multiple frameworks, inventories, key systems, and targeting systems.
+- Optimised Performance: Efficient and lightweight, ensuring minimal impact on resource performance.
+- Ease of Use: Simplifies development by providing a rich set of pre-built functions.
+- Scalable and Extendable: Built to grow with your projects, supporting future updates and enhancements.
 
 
-Credit: [Renewed Scripts](https://github.com/Renewed-Scripts) (bridge logic)
+## Acknowledgements 
 
+- Sync *(Developer)*
