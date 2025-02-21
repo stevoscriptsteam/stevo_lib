@@ -107,33 +107,20 @@ function stevo_lib.RegisterUsableItem(item, cb)
     ESX.RegisterUsableItem(item, cb)
 end
 
-function stevo_lib.GetCash(source) 
-    local player = ESX.GetPlayerFromId(source) 
-    local cash = tonumber(player.getMoney())
-    return cash 
-end 
-
-function stevo_lib.GetBank(source)
-    local player = ESX.GetPlayerFromId(source) 
-    local amount = tonumber(player.getAccount('bank').getMoney())
+function stevo_lib.GetMoney(source, type)
+    local player = ESX.GetPlayerFromId(source)
+    local amount = player.getAccount(type).money
     return amount
-end 
-
-function stevo_lib.AddMoney(source, type, amount)
-    local player = ESX.GetPlayerFromId(source) 
-    if type == "bank" then 
-        return player.addAccountMoney(type, amount)
-    else 
-        return player.addMoney(amount)
-    end 
 end
-
 
 function stevo_lib.RemoveMoney(source, type, amount) 
     local player = ESX.GetPlayerFromId(source) 
-    if type == "bank" then 
-        return player.removeAccountMoney(type, amount) 
+    
+    if type == 'money' then 
+        player.removeMoney(amount)
     else 
-        return player.removeMoney(amount)
-    end 
-end 
+        player.removeAccountMoney('bank', amount)
+    end
+
+    return true -- Have to assume money is removed
+end
