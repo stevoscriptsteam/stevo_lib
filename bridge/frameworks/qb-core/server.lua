@@ -118,25 +118,22 @@ function stevo_lib.RegisterUsableItem(item, cb)
     QBCore.Functions.CreateUseableItem(item, cb)
 end
 
-function stevo_lib.GetCash(source) 
+function stevo_lib.GetMoney(source, type)
     local player = QBCore.Functions.GetPlayer(source)
-    local cash = tonumber(player.PlayerData.money.cash) 
-    return cash 
-end 
+    local amount
 
-function stevo_lib.GetBank(source)
-    local player = QBCore.Functions.GetPlayer(source)
-    local bank = tonumber(player.PlayerData.money.bank) 
-    return bank 
-end
+    if type == 'money' then 
+        amount = player.PlayerData.money.cash
+    else 
+        amount =  player.PlayerData.money.bank
+    end
 
-function stevo_lib.AddMoney(source, type, amount)
-    local player = QBCore.Functions.GetPlayer(source)
-    return player.Functions.AddMoney(type, amount)
+    return amount
 end
 
 function stevo_lib.RemoveMoney(source, type, amount) 
     local player = QBCore.Functions.GetPlayer(source)
+    local type = type == 'money' and 'cash' or 'bank'
+    
     return player.Functions.RemoveMoney(type, amount)
-end 
-
+end
