@@ -1,3 +1,4 @@
+local config = lib.require('config')
 stevo_lib = {}
 stevo_lib.keys = {}
 stevo_lib.target = {}
