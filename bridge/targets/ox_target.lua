@@ -101,5 +101,9 @@ return {
             options = convert(options),
             invokingResource = resource
         }
-    end
+    end,
+    
+    disableTargeting = function(val)
+        exports.ox_target:disableTargeting(val)
+    end,
 }
