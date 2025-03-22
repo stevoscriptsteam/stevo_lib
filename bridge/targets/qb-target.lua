@@ -79,5 +79,9 @@ return {
             options = options,
             invokingResource = resource
         }
-    end
+    end,
+
+    disableTargeting = function(val)
+        exports['qb-target']:AllowTargeting(not val)
+    end,
 }
